@@ -14,6 +14,7 @@ var (
 	cfgFile   string
 	verbose   bool
 	logFormat string
+	apiKey    string
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -66,6 +67,13 @@ func init() {
 		os.Exit(1)
 	}
 
+	rootCmd.PersistentFlags().StringVar(&apiKey, "key", "", "API key for Imgbb")
+	err = viper.BindPFlag("key", rootCmd.PersistentFlags().Lookup("key"))
+	if err != nil {
+		slog.Error("error binding key flag", "error", err)
+		os.Exit(1)
+	}
+
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
@@ -101,6 +109,7 @@ func initConfig() {
 
 	logFormat = viper.GetString("log-format")
 	verbose = viper.GetBool("verbose")
+	apiKey = viper.GetString("key")
 
 	slog.Debug("using config file", "path", viper.ConfigFileUsed())
 	slog.Debug("log-format", "value", logFormat)
