@@ -1,6 +1,8 @@
 # germanwest
 
 Purpose:
+Commandline app to upload image to imgbb.com.
+
 
 
 ## example usage
