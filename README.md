@@ -7,6 +7,7 @@ Purpose:
 
 ```bash
 
+make && ./germanwest run --key=b481e484d2caf16c30c107b672ee3395
 
 ```
 
